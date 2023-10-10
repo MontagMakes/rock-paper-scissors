@@ -1,4 +1,6 @@
 //alternative branch
+addEventListener
+
 //Create function named "getComputerChoice" to get Computer's choice
 function getComputerChoice(){
     //  Create variable "computerChoice" of type string
