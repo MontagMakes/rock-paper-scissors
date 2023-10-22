@@ -1,63 +1,117 @@
 //rps-ui branch
 
+
 let btnRock = document.querySelector(".btnRock");
 let btnPaper = document.querySelector(".btnPaper");
 let btnScissors = document.querySelector(".btnScissors");
-let results = document.querySelector(".results");
+
+let playerScore = document.querySelector(".playerWins");
+let matchesPlayed = document.querySelector(".matchesPlayed");
+let computerScore = document.querySelector(".computerWins");
+
+let imageQuestionMarkPlayer = document.querySelector(".questionMarkImagePlayer");
+let imageQuestionMarkComputer = document.querySelector(".questionMarkImageComputer");
+
+let playerChoice;
+let computerChoice;
+let round;
 
 let player = 0;
 let computer = 0;
 let ties = 0;
 
-round = btnRock.addEventListener("click", ()=>{
-    round = playRound("rock", getComputerChoice())
-    game(round);
-});
-btnPaper.addEventListener("click", ()=>{
-    round = playRound("paper", getComputerChoice())
-    game(round);
-});
-btnScissors.addEventListener("click", ()=>{
-    round = playRound("scissors", getComputerChoice())
-    game(round);
+let maxMatches = 5;
+
+btnRock.addEventListener("click", ()=>{
+    imageQuestionMarkPlayer.setAttribute("src", "/images/rockTransparent.png");
+    playerChoice = "rock";
+    computerChoice = getComputerChoice();
+
+    setTimeout(()=>{
+        game(round);
+    }, 4000)
+    
 });
 
-game();
+btnPaper.addEventListener("click", ()=>{
+    imageQuestionMarkPlayer.setAttribute("src", "/images/paperTransparent.png");
+    playerChoice = "paper";
+    computerChoice = getComputerChoice();
+    
+    setTimeout(()=>{
+        game(round);
+    }, 4000)
+});
+
+btnScissors.addEventListener("click", ()=>{
+    imageQuestionMarkPlayer.setAttribute("src", "/images/scissorsTransparent.png");
+    playerChoice = "scissors";
+    computerChoice = getComputerChoice();
+
+    setTimeout(()=>{
+        game(round);
+    }, 4000)
+});
+
+function game(round){
+
+    round = playRound(playerChoice, computerChoice);
+    console.log(round)
+    if (round === "win"){
+        player++;
+        playerScore.textContent = `Player: ${player}` 
+    } else if (round === "lose"){
+        computer++;
+        computerScore.textContent = `Computer: ${computer}`
+
+    } else if (round === "tie") {
+        ties++;
+    }
+    console.log(player);
+    console.log(computer);
+    
+    matchesPlayed.textContent = `Matches ${computer}`;
+    console.log(player+computer);
+    console.log(matchesPlayed.textContent);
+    setTimeout(() => {
+        if (player+computer === maxMatches){
+            if (player > computer && player > ties){
+                alert("congratulations, You have won!");
+            } else if (computer > player && computer > ties){
+                alert("You have lost, Better luck next time.");
+            } else if (ties > player && ties > computer){
+                alert("Too bad, It was a tie.");
+            }
+        }
+        player, computer, ties, matchesPlayed = 0;
+    }, 3000)
+}
+
+
 
 function getComputerChoice(){
     let computerChoice = "";
     let randomChoice = Math.floor(Math.random()*3)+1;
     if(randomChoice === 1){
-        
         computerChoice = "rock";
-    } else if (randomChoice === 2){
-        
+        setTimeout(() => {
+            imageQuestionMarkComputer.setAttribute("src", "/images/rockTransparent.png");
+        }, 2000)
+    } else if (randomChoice === 2){        
         computerChoice = "paper";
+        setTimeout(() => {
+            imageQuestionMarkComputer.setAttribute("src", "/images/paperTransparent.png");
+        }, 2000)
+    
     } else {
-        
         computerChoice = "scissors"
+        setTimeout(() => {
+            imageQuestionMarkComputer.setAttribute("src", "/images/scissorsTransparent.png");
+        }, 2000)
     }
     return computerChoice;
 }
 
-function getUserChoice(choiceButtonClick){
-    if(!choiceButtonClick){
-        let userChoice = prompt("Please choose one of the 3 options, Rock, Paper or scissors.").toLowerCase();
-    
-        if (userChoice === "rock"){
-            return "rock"
-        } else if (userChoice === "paper"){
-            return "paper"
-        } else if (userChoice === "scissors"){
-            return "scissors"
-        } else {
-            results.textContent = "Invalid Input, Please refresh the page and play again.";
-        }
-    } else {
-        return choiceButtonClick;
-    }
-    
-}
 
 function playRound(playerSelection, computerSelection){
     if (playerSelection === computerSelection){
@@ -81,35 +135,6 @@ function playRound(playerSelection, computerSelection){
     } else if (playerSelection === "scissors" && computerSelection === "rock"){
         
         return("lose")
-    }
-}
-
-function game(round){
-    
-    console.log(round)
-    if (round === "win"){
-        player++;
-        
-
-    } else if (round === "lose"){
-        computer++;
-        
-
-    } else if (round === "tie") {
-        ties++;
-        
-    }
-
-    results.textContent = `Player: ${player}  Computer: ${computer}  Ties: ${ties}.`;
-
-    if (player+computer+ties === 5){
-        if (player > computer && player > ties){
-            results.textContent = "congratulations, You have won!";
-        } else if (computer > player && computer > ties){
-            results.textContent = "You have lost, Better luck next time.";
-        } else if (ties > player && ties > computer){
-            results.textContent = "Too bad, It was a tie.";    
-        }
     }
 }
 

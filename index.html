@@ -3,13 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <button class="btnRock">Rock</button>
-        <button class="btnPaper">Paper</button>
-        <button class="btnScissors">Scissors</button>
+        <header>ROCK PAPER SCISSORS</header>
 
-        <div class="results">results</div>
+        <main>
+            <div class="scores">
+                <p class="playerWins">player: 0</p>
+                <p class="matchesPlayed">Matches: 0/5</p>
+                <p class="computerWins">Computer: 0</p>
+            </div>
+
+            <div class="questionMark">
+                <img class="questionMarkImagePlayer" src="/images/questionMarkTransparent.png" 
+                alt="Image of a question mark">
+                <img class="questionMarkImageComputer" src="/images/questionMarkTransparent.png" 
+                alt="Image of a question mark">
+            </div>
+
+            <div class="choicesRow">
+                <img class="btnRock" src="/images/rockTransparent.png"
+                alt="image of a hand in the shape of a rock">
+                
+                <img class="btnPaper" src="/images/paperTransparent.png " 
+                alt="image of a hand in the shape of a paper">
+
+                <img class="btnScissors" src="/images/scissorsTransparent.png"
+                alt="image of a hand in the shape of scissors">
+
+            </div>
+        </main>
+        
+        <footer>Copyright © 2023 SolitaryXero</footer>
         <script src="script.js"></script>
     </body>
 </html>

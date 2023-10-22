@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin-top: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+header{
+    display: flex;
+    flex: initial;
+    padding:2%;
+    width: 100%;
+    justify-content: center;
+    align-self: center;
+
+    background-color: rgb(32, 28, 83);
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    justify-content: center;
+    padding-left: 30%;
+    padding-right: 30%;
+    background-color: gainsboro;
+}
+
+.scores{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.questionMark{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.questionMarkImagePlayer, 
+.questionMarkImageComputer{
+    height: 100%;
+    width: 40%;
+}
+
+.choicesRow{
+    display: flex;
+    justify-content:space-between;
+}
+
+footer{
+    display: flex;
+    flex: initial;
+    padding:2%;
+    width: 100%;
+    justify-content: center;
+    align-self: center;
+    
+    background-color: grey;
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+}
