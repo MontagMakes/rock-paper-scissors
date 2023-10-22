@@ -6,7 +6,7 @@ let btnPaper = document.querySelector(".btnPaper");
 let btnScissors = document.querySelector(".btnScissors");
 
 let playerScore = document.querySelector(".playerWins");
-let matchesPlayed = document.querySelector(".matchesPlayed");
+
 let computerScore = document.querySelector(".computerWins");
 
 let imageQuestionMarkPlayer = document.querySelector(".questionMarkImagePlayer");
@@ -54,40 +54,53 @@ btnScissors.addEventListener("click", ()=>{
 });
 
 function game(round){
+    let matchesPlayed = document.querySelector(".matchesPlayed");
 
     round = playRound(playerChoice, computerChoice);
     console.log(round)
     if (round === "win"){
         player++;
-        playerScore.textContent = `Player: ${player}` 
+        playerScore.textContent = `Player: ${player}`;
+        setQuestionMarks();
+
     } else if (round === "lose"){
         computer++;
-        computerScore.textContent = `Computer: ${computer}`
+        computerScore.textContent = `Computer: ${computer}`;
+        setQuestionMarks();
 
     } else if (round === "tie") {
         ties++;
+        setQuestionMarks();
     }
-    console.log(player);
-    console.log(computer);
     
-    matchesPlayed.textContent = `Matches ${computer}`;
-    console.log(player+computer);
-    console.log(matchesPlayed.textContent);
-    setTimeout(() => {
-        if (player+computer === maxMatches){
-            if (player > computer && player > ties){
-                alert("congratulations, You have won!");
-            } else if (computer > player && computer > ties){
-                alert("You have lost, Better luck next time.");
-            } else if (ties > player && ties > computer){
-                alert("Too bad, It was a tie.");
-            }
+    matchesPlayed.textContent = `Matches ${computer+player}/${maxMatches}`;
+    if (player+computer === maxMatches){
+        gameEnd();
+    }
+}
+
+function gameEnd(){
+    setTimeout(() => {    
+        if (player > computer && player > ties){
+            alert("congratulations, You have won!");
+        } else if (computer > player && computer > ties){
+            alert("You have lost, Better luck next time.");
+        } else if (ties > player && ties > computer){
+            alert("Too bad, It was a tie.");
         }
-        player, computer, ties, matchesPlayed = 0;
+        
+        player = 0;
+        computer = 0;
+        ties = 0;
+        matchesPlayed = 0;
+        
     }, 3000)
 }
 
-
+function setQuestionMarks(){
+    imageQuestionMarkPlayer.setAttribute("src", "/images/questionMarkTransparent.png");
+    imageQuestionMarkComputer.setAttribute("src", "/images/questionMarkTransparent.png");
+}
 
 function getComputerChoice(){
     let computerChoice = "";
