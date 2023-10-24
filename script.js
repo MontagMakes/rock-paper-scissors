@@ -1,16 +1,23 @@
 //rps-ui branch
 
+const line1 = document.querySelector(".line1");
+const line2 = document.querySelector(".line2");
 
-let btnRock = document.querySelector(".btnRock");
-let btnPaper = document.querySelector(".btnPaper");
-let btnScissors = document.querySelector(".btnScissors");
+const btnRock = document.querySelector(".btnRock");
+const btnPaper = document.querySelector(".btnPaper");
+const btnScissors = document.querySelector(".btnScissors");
+
+const imageQuestionMarkPlayer = document.querySelector(".questionMarkImagePlayer");
+const imageQuestionMarkComputer = document.querySelector(".questionMarkImageComputer");
+
+const dialog = document.querySelector("dialog");
+const dialogTxt = document.querySelector(".dialogTxt")
+const closeDialog = document.querySelector(".closeDialog")
 
 let playerScore = document.querySelector(".playerWins");
-
 let computerScore = document.querySelector(".computerWins");
 
-let imageQuestionMarkPlayer = document.querySelector(".questionMarkImagePlayer");
-let imageQuestionMarkComputer = document.querySelector(".questionMarkImageComputer");
+let isListenerEnabled = true;
 
 let playerChoice;
 let computerChoice;
@@ -18,83 +25,113 @@ let round;
 
 let player = 0;
 let computer = 0;
-let ties = 0;
 
 let maxMatches = 5;
 
-btnRock.addEventListener("click", ()=>{
-    imageQuestionMarkPlayer.setAttribute("src", "/images/rockTransparent.png");
-    playerChoice = "rock";
-    computerChoice = getComputerChoice();
 
-    setTimeout(()=>{
-        game(round);
-    }, 4000)
+clickEvents();
+
+function clickEvents(){
+    closeDialog.addEventListener("click", ()=>{
+        player = 0;
+        computer = 0;
+        playerScore.textContent = `Player: ${player}`;
+        computerScore.textContent = `Computer: ${computer}`;
+        line1.textContent = "Choose your weapon";
+        line2.textContent = "First to score 5 points wins the game";
+        dialog.close();
+
+    })
+    btnRock.addEventListener("click", ()=>{
+        if(isListenerEnabled){
+            isListenerEnabled = false;
     
-});
-
-btnPaper.addEventListener("click", ()=>{
-    imageQuestionMarkPlayer.setAttribute("src", "/images/paperTransparent.png");
-    playerChoice = "paper";
-    computerChoice = getComputerChoice();
+            imageQuestionMarkPlayer.setAttribute("src", "/images/rockTransparent.png");
+            playerChoice = "rock";
+            computerChoice = getComputerChoice();
     
-    setTimeout(()=>{
-        game(round);
-    }, 4000)
-});
-
-btnScissors.addEventListener("click", ()=>{
-    imageQuestionMarkPlayer.setAttribute("src", "/images/scissorsTransparent.png");
-    playerChoice = "scissors";
-    computerChoice = getComputerChoice();
-
-    setTimeout(()=>{
-        game(round);
-    }, 4000)
-});
+            setTimeout(()=>{
+                game(round);
+                isListenerEnabled = true;
+            }, 1500)
+        }
+    });
+    
+    
+    btnPaper.addEventListener("click", ()=>{
+        if(isListenerEnabled){
+            isListenerEnabled = false;
+            imageQuestionMarkPlayer.setAttribute("src", "/images/paperTransparent.png");
+            playerChoice = "paper";
+            computerChoice = getComputerChoice();
+            
+            setTimeout(()=>{
+                game(round);
+                isListenerEnabled = true;
+            }, 1500)
+        }
+    
+    });
+    
+    btnScissors.addEventListener("click", ()=>{
+        if(isListenerEnabled){
+            isListenerEnabled = false;
+    
+            imageQuestionMarkPlayer.setAttribute("src", "/images/scissorsTransparent.png");
+            playerChoice = "scissors";
+            computerChoice = getComputerChoice();
+            
+            setTimeout(()=>{
+                game(round);
+                isListenerEnabled = true;
+            }, 1500)
+        }
+        
+    });    
+}
 
 function game(round){
-    let matchesPlayed = document.querySelector(".matchesPlayed");
 
     round = playRound(playerChoice, computerChoice);
     console.log(round)
     if (round === "win"){
         player++;
         playerScore.textContent = `Player: ${player}`;
+        line1.textContent = "You win!";
+        line2.textContent = `${playerChoice.toUpperCase()} beats ${computerChoice}`;
         setQuestionMarks();
 
     } else if (round === "lose"){
         computer++;
         computerScore.textContent = `Computer: ${computer}`;
+        line1.textContent = "You lose!";
+        line2.textContent = `${playerChoice.toUpperCase()} is beaten by ${computerChoice}`;
         setQuestionMarks();
 
     } else if (round === "tie") {
-        ties++;
+        line1.textContent = "It's a Tie!";
+        line2.textContent = `${playerChoice.toUpperCase()} ties with ${computerChoice}`;
         setQuestionMarks();
     }
-    
-    matchesPlayed.textContent = `Matches ${computer+player}/${maxMatches}`;
-    if (player+computer === maxMatches){
+
+    if (player === 5 || computer === 5){
         gameEnd();
     }
 }
 
 function gameEnd(){
-    setTimeout(() => {    
-        if (player > computer && player > ties){
-            alert("congratulations, You have won!");
-        } else if (computer > player && computer > ties){
-            alert("You have lost, Better luck next time.");
-        } else if (ties > player && ties > computer){
-            alert("Too bad, It was a tie.");
-        }
+    
+        if (player === 5){
+            dialogTxt.textContent = "Congratulations, You have won!";
+        } else if (computer === 5){
+            dialogTxt.textContent = "Unfortunately, You have lost.";
+        };
+
+        dialog.showModal();
         
-        player = 0;
-        computer = 0;
-        ties = 0;
-        matchesPlayed = 0;
         
-    }, 3000)
+        
+    
 }
 
 function setQuestionMarks(){
@@ -107,20 +144,19 @@ function getComputerChoice(){
     let randomChoice = Math.floor(Math.random()*3)+1;
     if(randomChoice === 1){
         computerChoice = "rock";
-        setTimeout(() => {
-            imageQuestionMarkComputer.setAttribute("src", "/images/rockTransparent.png");
-        }, 2000)
+        
+        imageQuestionMarkComputer.setAttribute("src", "/images/rockTransparent.png");
+        
     } else if (randomChoice === 2){        
         computerChoice = "paper";
-        setTimeout(() => {
-            imageQuestionMarkComputer.setAttribute("src", "/images/paperTransparent.png");
-        }, 2000)
+        
+        imageQuestionMarkComputer.setAttribute("src", "/images/paperTransparent.png");
+        
     
     } else {
         computerChoice = "scissors"
-        setTimeout(() => {
-            imageQuestionMarkComputer.setAttribute("src", "/images/scissorsTransparent.png");
-        }, 2000)
+        imageQuestionMarkComputer.setAttribute("src", "/images/scissorsTransparent.png");
+        
     }
     return computerChoice;
 }

@@ -9,17 +9,23 @@
         <header>ROCK PAPER SCISSORS</header>
 
         <main>
-            <div class="scores">
-                <p class="playerWins">player: 0</p>
-                <p class="matchesPlayed">Matches: 0/5</p>
-                <p class="computerWins">Computer: 0</p>
+            <div class="heading">
+                <p class="line1">Choose your weapon</p>
+                <p class="line2">First to score 5 points wins the game</p>
             </div>
 
             <div class="questionMark">
-                <img class="questionMarkImagePlayer" src="/images/questionMarkTransparent.png" 
-                alt="Image of a question mark">
-                <img class="questionMarkImageComputer" src="/images/questionMarkTransparent.png" 
-                alt="Image of a question mark">
+                <div class="scores">
+                    <p class="playerWins">Player: 0</p>
+                    <img class="questionMarkImagePlayer" src="/images/questionMarkTransparent.png" 
+                    alt="Image of a question mark">
+                </div>
+
+                <div class="scores">
+                    <p class="computerWins">Computer: 0</p>
+                    <img class="questionMarkImageComputer" src="/images/questionMarkTransparent.png" 
+                    alt="Image of a question mark">
+                </div>
             </div>
 
             <div class="choicesRow">
@@ -31,8 +37,13 @@
 
                 <img class="btnScissors" src="/images/scissorsTransparent.png"
                 alt="image of a hand in the shape of scissors">
-
             </div>
+
+            <dialog>
+                <p class="dialogTxt">Congratulations, You have won!</p>
+                <p>Click the button below, to play again!</p>
+                <button class="closeDialog">Restart</dialog>
+            </dialog>
         </main>
         
         <footer>Copyright © 2023 SolitaryXero</footer>

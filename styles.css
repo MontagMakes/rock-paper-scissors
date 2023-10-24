@@ -10,31 +10,41 @@ body {
 header{
     display: flex;
     flex: initial;
-    padding:2%;
+    padding:1%;
     width: 100%;
     justify-content: center;
     align-self: center;
 
     background-color: rgb(32, 28, 83);
     color: white;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: larger;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 50px;
 }
 
 main{
     display: flex;
     flex-direction: column;
     flex: auto;
-    justify-content: center;
+    justify-content: flex-start;
     padding-left: 30%;
     padding-right: 30%;
     background-color: gainsboro;
 }
 
+.heading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-weight: bold;
+    font-size: 25px;
+}
+
 .scores{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     font-size: x-large;
     font-weight: bold;
 }
@@ -42,19 +52,37 @@ main{
 .questionMark{
     display:flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .questionMarkImagePlayer, 
 .questionMarkImageComputer{
-    height: 100%;
-    width: 40%;
+    height: 170px;
+    width: 100px;
 }
 
 .choicesRow{
     display: flex;
-    justify-content:space-between;
+    justify-content:space-evenly;
+    
 }
+
+.btnRock,
+.btnPaper,
+.btnScissors{
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+dialog{
+    border-color: #dcdcdc;
+    background-color: #dcdcdc;
+    border-radius: 15px;
+}
+
+::backdrop {
+    opacity: 0.999999;
+  }
 
 footer{
     display: flex;
