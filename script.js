@@ -31,8 +31,8 @@ let maxMatches = 5;
 
 clickEvents();
 
-function clickEvents(){
-    closeDialog.addEventListener("click", ()=>{
+function clickEvents() {
+    closeDialog.addEventListener("click", () => {
         player = 0;
         computer = 0;
         playerScore.textContent = `Player: ${player}`;
@@ -42,66 +42,66 @@ function clickEvents(){
         dialog.close();
 
     })
-    btnRock.addEventListener("click", ()=>{
-        if(isListenerEnabled){
+    btnRock.addEventListener("click", () => {
+        if (isListenerEnabled) {
             isListenerEnabled = false;
-    
+
             imageQuestionMarkPlayer.setAttribute("src", "/images/rockTransparent.png");
             playerChoice = "rock";
             computerChoice = getComputerChoice();
-    
-            setTimeout(()=>{
+
+            setTimeout(() => {
                 game(round);
                 isListenerEnabled = true;
             }, 1500)
         }
     });
-    
-    
-    btnPaper.addEventListener("click", ()=>{
-        if(isListenerEnabled){
+
+
+    btnPaper.addEventListener("click", () => {
+        if (isListenerEnabled) {
             isListenerEnabled = false;
             imageQuestionMarkPlayer.setAttribute("src", "/images/paperTransparent.png");
             playerChoice = "paper";
             computerChoice = getComputerChoice();
-            
-            setTimeout(()=>{
+
+            setTimeout(() => {
                 game(round);
                 isListenerEnabled = true;
             }, 1500)
         }
-    
+
     });
-    
-    btnScissors.addEventListener("click", ()=>{
-        if(isListenerEnabled){
+
+    btnScissors.addEventListener("click", () => {
+        if (isListenerEnabled) {
             isListenerEnabled = false;
-    
+
             imageQuestionMarkPlayer.setAttribute("src", "/images/scissorsTransparent.png");
             playerChoice = "scissors";
             computerChoice = getComputerChoice();
-            
-            setTimeout(()=>{
+
+            setTimeout(() => {
                 game(round);
                 isListenerEnabled = true;
             }, 1500)
         }
-        
-    });    
+
+    });
 }
 
-function game(round){
+function game(round) {
 
     round = playRound(playerChoice, computerChoice);
     console.log(round)
-    if (round === "win"){
+    if (round === "win") {
         player++;
         playerScore.textContent = `Player: ${player}`;
         line1.textContent = "You win!";
         line2.textContent = `${playerChoice.toUpperCase()} beats ${computerChoice}`;
         setQuestionMarks();
 
-    } else if (round === "lose"){
+    } else if (round === "lose") {
         computer++;
         computerScore.textContent = `Computer: ${computer}`;
         line1.textContent = "You lose!";
@@ -114,76 +114,72 @@ function game(round){
         setQuestionMarks();
     }
 
-    if (player === 5 || computer === 5){
+    if (player === 5 || computer === 5) {
         gameEnd();
     }
 }
 
-function gameEnd(){
-    
-        if (player === 5){
-            dialogTxt.textContent = "Congratulations, You have won!";
-        } else if (computer === 5){
-            dialogTxt.textContent = "Unfortunately, You have lost.";
-        };
+function gameEnd() {
 
-        dialog.showModal();
-        
-        
-        
-    
+    if (player === 5) {
+        dialogTxt.textContent = "Congratulations, You have won!";
+    } else if (computer === 5) {
+        dialogTxt.textContent = "Unfortunately, You have lost.";
+    };
+
+    dialog.showModal();
 }
 
-function setQuestionMarks(){
+function setQuestionMarks() {
     imageQuestionMarkPlayer.setAttribute("src", "/images/questionMarkTransparent.png");
     imageQuestionMarkComputer.setAttribute("src", "/images/questionMarkTransparent.png");
 }
 
-function getComputerChoice(){
+function getComputerChoice() {
     let computerChoice = "";
-    let randomChoice = Math.floor(Math.random()*3)+1;
-    if(randomChoice === 1){
+    let randomChoice = Math.floor(Math.random() * 3) + 1;
+    if (randomChoice === 1) {
         computerChoice = "rock";
-        
+
         imageQuestionMarkComputer.setAttribute("src", "/images/rockTransparent.png");
-        
-    } else if (randomChoice === 2){        
+
+    } else if (randomChoice === 2) {
         computerChoice = "paper";
-        
+
         imageQuestionMarkComputer.setAttribute("src", "/images/paperTransparent.png");
-        
-    
+
+
     } else {
         computerChoice = "scissors"
         imageQuestionMarkComputer.setAttribute("src", "/images/scissorsTransparent.png");
-        
+
     }
     return computerChoice;
 }
 
 
-function playRound(playerSelection, computerSelection){
-    if (playerSelection === computerSelection){
-        
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+
         return ("tie")
-    } else if (playerSelection === "rock" && computerSelection === "paper"){
-        
-        return("lose")
-    } else if (playerSelection === "rock" && computerSelection === "scissors"){
-        
-        return("win")
-    } else if (playerSelection === "paper" && computerSelection === "rock"){
-        
-        return("win")
-    } else if (playerSelection === "paper" && computerSelection === "scissors"){
-        
-        return("lose")
-    } else if (playerSelection === "scissors" && computerSelection === "paper"){
-        
-        return("win")
-    } else if (playerSelection === "scissors" && computerSelection === "rock"){
-        
-        return("lose")
+    } else if (playerSelection === "rock" && computerSelection === "paper") {
+
+        return ("lose")
+    } else if (playerSelection === "rock" && computerSelection === "scissors") {
+
+        return ("win")
+    } else if (playerSelection === "paper" && computerSelection === "rock") {
+
+        return ("win")
+    } else if (playerSelection === "paper" && computerSelection === "scissors") {
+
+        return ("lose")
+    } else if (playerSelection === "scissors" && computerSelection === "paper") {
+
+        return ("win")
+    } else if (playerSelection === "scissors" && computerSelection === "rock") {
+
+        return ("lose")
     }
 }
 
