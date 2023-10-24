@@ -46,7 +46,7 @@ function clickEvents() {
         if (isListenerEnabled) {
             isListenerEnabled = false;
 
-            imageQuestionMarkPlayer.setAttribute("src", "/images/rockTransparent.png");
+            imageQuestionMarkPlayer.setAttribute("src", "images/rockTransparent.png");
             playerChoice = "rock";
             computerChoice = getComputerChoice();
 
@@ -61,7 +61,7 @@ function clickEvents() {
     btnPaper.addEventListener("click", () => {
         if (isListenerEnabled) {
             isListenerEnabled = false;
-            imageQuestionMarkPlayer.setAttribute("src", "/images/paperTransparent.png");
+            imageQuestionMarkPlayer.setAttribute("src", "images/paperTransparent.png");
             playerChoice = "paper";
             computerChoice = getComputerChoice();
 
@@ -77,7 +77,7 @@ function clickEvents() {
         if (isListenerEnabled) {
             isListenerEnabled = false;
 
-            imageQuestionMarkPlayer.setAttribute("src", "/images/scissorsTransparent.png");
+            imageQuestionMarkPlayer.setAttribute("src", "images/scissorsTransparent.png");
             playerChoice = "scissors";
             computerChoice = getComputerChoice();
 
@@ -98,19 +98,19 @@ function game(round) {
         player++;
         playerScore.textContent = `Player: ${player}`;
         line1.textContent = "You win!";
-        line2.textContent = `${playerChoice.toUpperCase()} beats ${computerChoice}`;
+        line2.textContent = `${playerChoice.toUpperCase()} beats ${computerChoice.toUpperCase()}`;
         setQuestionMarks();
 
     } else if (round === "lose") {
         computer++;
         computerScore.textContent = `Computer: ${computer}`;
         line1.textContent = "You lose!";
-        line2.textContent = `${playerChoice.toUpperCase()} is beaten by ${computerChoice}`;
+        line2.textContent = `${playerChoice.toUpperCase()} is beaten by ${computerChoice.toUpperCase()}`;
         setQuestionMarks();
 
     } else if (round === "tie") {
         line1.textContent = "It's a Tie!";
-        line2.textContent = `${playerChoice.toUpperCase()} ties with ${computerChoice}`;
+        line2.textContent = `${playerChoice.toUpperCase()} ties with ${computerChoice.toUpperCase()}`;
         setQuestionMarks();
     }
 
@@ -131,8 +131,8 @@ function gameEnd() {
 }
 
 function setQuestionMarks() {
-    imageQuestionMarkPlayer.setAttribute("src", "/images/questionMarkTransparent.png");
-    imageQuestionMarkComputer.setAttribute("src", "/images/questionMarkTransparent.png");
+    imageQuestionMarkPlayer.setAttribute("src", "images/questionMarkTransparent.png");
+    imageQuestionMarkComputer.setAttribute("src", "images/questionMarkTransparent.png");
 }
 
 function getComputerChoice() {
@@ -141,17 +141,17 @@ function getComputerChoice() {
     if (randomChoice === 1) {
         computerChoice = "rock";
 
-        imageQuestionMarkComputer.setAttribute("src", "/images/rockTransparent.png");
+        imageQuestionMarkComputer.setAttribute("src", "images/rockTransparent.png");
 
     } else if (randomChoice === 2) {
         computerChoice = "paper";
 
-        imageQuestionMarkComputer.setAttribute("src", "/images/paperTransparent.png");
+        imageQuestionMarkComputer.setAttribute("src", "images/paperTransparent.png");
 
 
     } else {
         computerChoice = "scissors"
-        imageQuestionMarkComputer.setAttribute("src", "/images/scissorsTransparent.png");
+        imageQuestionMarkComputer.setAttribute("src", "images/scissorsTransparent.png");
 
     }
     return computerChoice;
