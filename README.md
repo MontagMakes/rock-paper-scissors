@@ -1,5 +1,8 @@
 Rock, Paper, Scissors Web App
 
+![image](https://github.com/MontagMakes/rock-paper-scissors/assets/103876121/efe9112e-a30a-4860-af99-d6cdacd2119e)
+
+
 Rock, Paper, Scissors
 
 This is a simple web application that allows you to play the classic game of Rock, Paper, Scissors against the computer.
